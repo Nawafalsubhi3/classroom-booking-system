@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة إدارة الحجوزات - متوسطة المنذر بن عمرو الأنصاري</title>
+    <title>حجز الغرفة متعددة المهام - متوسطة المنذر بن عمرو الأنصاري</title>
     <style>
         * {
             margin: 0;
@@ -14,6 +14,7 @@
         body {
             font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
             background: linear-gradient(135deg, #f8f9ff 0%, #e8f4f8 100%);
+            min-height: 100vh;
             color: #2c3e50;
         }
         
@@ -25,29 +26,23 @@
         }
         
         .header-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .header-left {
             display: flex;
             align-items: center;
             gap: 20px;
         }
         
         .logo {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #1e88e5, #42a5f5);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: bold;
         }
         
@@ -57,520 +52,284 @@
         
         .ministry {
             color: #666;
-            font-size: 0.85em;
+            font-size: 0.9em;
             margin-bottom: 2px;
         }
         
         .school-name {
             color: #1e88e5;
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
         
         .principal {
             color: #555;
-            font-size: 0.9em;
-        }
-        
-        .admin-badge {
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            color: #1e88e5;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            border: 2px solid #1e88e5;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 25px;
-        }
-        
-        .page-title {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid #e3f2fd;
-        }
-        
-        .page-title h1 {
-            color: #1e88e5;
-            font-size: 1.8em;
-            margin-bottom: 8px;
-        }
-        
-        .page-title p {
-            color: #666;
-            font-size: 1.05em;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid #e8eaf6;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1e88e5, #42a5f5);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.15);
-        }
-        
-        .stat-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            color: #1e88e5;
-        }
-        
-        .stat-number {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #1e88e5;
-            margin-bottom: 8px;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 450px;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .requests-section {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid #e8eaf6;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e8eaf6;
-        }
-        
-        .section-title {
-            font-size: 1.4em;
-            color: #1e88e5;
-            font-weight: 600;
-        }
-        
-        .export-btn {
-            background: linear-gradient(135deg, #1e88e5, #42a5f5);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
             font-size: 0.95em;
         }
         
-        .export-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
         
-        .filters {
-            display: flex;
-            gap: 15px;
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .form-header h1 {
+            color: #1e88e5;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .form-group {
             margin-bottom: 25px;
-            flex-wrap: wrap;
         }
         
-        .filter-select {
-            padding: 10px 15px;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #424242;
+            font-size: 1.05em;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
             border: 2px solid #e8eaf6;
             border-radius: 8px;
-            background: #fafafa;
-            font-size: 14px;
-            min-width: 150px;
+            font-size: 16px;
             transition: all 0.3s ease;
+            background: #fafafa;
         }
         
-        .filter-select:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: #1e88e5;
             background: white;
             box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
         }
         
-        .request-card {
-            background: #f8f9ff;
-            border: 2px solid #e8eaf6;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .request-card:hover {
-            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.1);
-            border-color: #1e88e5;
-        }
-        
-        .request-card.pending {
-            border-right: 5px solid #ff9800;
-            background: #fff8e1;
-        }
-        
-        .request-card.approved {
-            border-right: 5px solid #4caf50;
-            background: #f1f8e9;
-        }
-        
-        .request-card.rejected {
-            border-right: 5px solid #f44336;
-            background: #ffebee;
-        }
-        
-        .request-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .teacher-info {
-            font-weight: bold;
-            font-size: 1.15em;
-            color: #1e88e5;
-        }
-        
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-        }
-        
-        .status-pending {
-            background: #fff3e0;
-            color: #ef6c00;
-            border: 1px solid #ffcc02;
-        }
-        
-        .status-approved {
-            background: #e8f5e8;
-            color: #2e7d32;
-            border: 1px solid #4caf50;
-        }
-        
-        .status-rejected {
-            background: #ffebee;
-            color: #c62828;
-            border: 1px solid #f44336;
-        }
-        
-        .request-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95em;
-        }
-        
-        .detail-label {
-            font-weight: 600;
-            color: #424242;
-        }
-        
-        .schedule-slots {
-            margin: 15px 0;
-        }
-        
-        .slot-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-        }
-        
-        .slot-tag {
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 600;
-            border: 1px solid #bbdefb;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-approve {
-            background: #4caf50;
-            color: white;
-        }
-        
-        .btn-approve:hover {
-            background: #45a049;
-            transform: translateY(-1px);
-        }
-        
-        .btn-reject {
-            background: #f44336;
-            color: white;
-        }
-        
-        .btn-reject:hover {
-            background: #da190b;
-            transform: translateY(-1px);
-        }
-        
-        .btn-details {
-            background: #1e88e5;
-            color: white;
-        }
-        
-        .btn-details:hover {
-            background: #1976d2;
-            transform: translateY(-1px);
-        }
-        
         .schedule-section {
-            background: white;
-            border-radius: 16px;
+            margin-top: 30px;
             padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid #e8eaf6;
+            background: #f8f9ff;
+            border-radius: 12px;
+            border: 1px solid #e3f2fd;
         }
         
-        .week-schedule {
+        .schedule-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1e88e5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .days-grid {
             display: grid;
-            grid-template-columns: 100px repeat(5, 1fr);
-            gap: 2px;
-            background: #e8eaf6;
-            border-radius: 8px;
-            overflow: hidden;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
         
-        .schedule-header {
-            background: #1e88e5;
-            color: white;
-            padding: 12px 6px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.85em;
-        }
-        
-        .schedule-cell {
+        .day-card {
             background: white;
-            padding: 8px 4px;
-            text-align: center;
-            font-size: 0.75em;
-            min-height: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
+            border: 2px solid #e8eaf6;
+            border-radius: 12px;
+            padding: 20px;
             transition: all 0.3s ease;
         }
         
-        .schedule-cell.occupied {
-            background: #ffebee;
-            color: #c62828;
+        .day-card:hover {
+            border-color: #1e88e5;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.1);
+        }
+        
+        .day-card.selected {
+            border-color: #1e88e5;
+            background: #f3e5f5;
+        }
+        
+        .day-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #1e88e5;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8eaf6;
+        }
+        
+        .periods-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .period-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .period-checkbox:hover {
+            background: rgba(30, 136, 229, 0.1);
+            border-color: #1e88e5;
+        }
+        
+        .period-checkbox input[type="checkbox"] {
+            margin-left: 10px;
+            transform: scale(1.3);
+            accent-color: #1e88e5;
+        }
+        
+        .period-checkbox.selected {
+            background: rgba(30, 136, 229, 0.15);
+            border-color: #1e88e5;
             font-weight: 600;
         }
         
-        .schedule-cell.available {
-            background: #e8f5e8;
-            color: #2e7d32;
+        .submit-section {
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            background: #f8f9ff;
+            border-radius: 12px;
         }
         
-        .schedule-cell:hover {
-            box-shadow: inset 0 0 0 2px #1e88e5;
-        }
-        
-        .occupied-by {
-            font-size: 0.7em;
-            margin-top: 2px;
-            opacity: 0.8;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background: white;
-            margin: 3% auto;
-            padding: 0;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 700px;
-            max-height: 85vh;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .modal-header {
+        .submit-btn {
             background: linear-gradient(135deg, #1e88e5, #42a5f5);
             color: white;
-            padding: 20px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h2 {
-            font-size: 1.3em;
-        }
-        
-        .close {
-            font-size: 24px;
-            font-weight: bold;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
             cursor: pointer;
-            color: white;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
         }
         
-        .close:hover {
-            opacity: 1;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.4);
         }
         
-        .modal-body {
-            padding: 25px;
-            max-height: 60vh;
-            overflow-y: auto;
+        .submit-btn:disabled {
+            background: #bdbdbd;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .status-success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .status-error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
         }
         
         .loading {
+            display: none;
             text-align: center;
-            padding: 30px;
             color: #1e88e5;
             font-weight: 600;
         }
         
-        .no-data {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .educational-message {
+        .educational-note {
             background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
             border: 1px solid #c8e6c9;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 25px;
-            border-right: 4px solid #4caf50;
         }
         
-        .educational-message h3 {
+        .educational-note h3 {
             color: #2e7d32;
             margin-bottom: 10px;
             font-size: 1.1em;
         }
         
-        .educational-message p {
+        .educational-note p {
             color: #4a7c59;
             line-height: 1.6;
             margin-bottom: 8px;
         }
         
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+        .required-field {
+            color: #d32f2f;
         }
         
         @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .request-details {
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .days-grid {
                 grid-template-columns: 1fr;
             }
             
-            .week-schedule {
-                grid-template-columns: 80px repeat(5, 1fr);
-            }
-            
-            .filters {
-                flex-direction: column;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .container {
-                padding: 15px;
+            .periods-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -578,187 +337,292 @@
 <body>
     <div class="header">
         <div class="header-content">
-            <div class="header-left">
-                <div class="logo">🏫</div>
-                <div class="header-text">
-                    <div class="ministry">المملكة العربية السعودية - وزارة التعليم</div>
-                    <div class="school-name">متوسطة المنذر بن عمرو الأنصاري</div>
-                    <div class="principal">مدير المدرسة: خالد المطيري</div>
-                </div>
-            </div>
-            <div class="admin-badge">
-                🎛️ لوحة الإدارة
+            <div class="logo">🏫</div>
+            <div class="header-text">
+                <div class="ministry">المملكة العربية السعودية - وزارة التعليم</div>
+                <div class="school-name">متوسطة المنذر بن عمرو الأنصاري</div>
+                <div class="principal">مدير المدرسة: خالد المطيري</div>
             </div>
         </div>
     </div>
     
     <div class="container">
-        <div class="page-title">
-            <h1>📊 لوحة إدارة حجوزات الغرفة متعددة المهام</h1>
-            <p>مراقبة ومتابعة طلبات المعلمين وإدارة الجدول الأسبوعي بكفاءة</p>
-        </div>
-        
-        <div class="educational-message">
-            <h3>🎯 إرشادات إدارية مهمة:</h3>
-            <p><strong>• الأولوية للأنشطة التعليمية:</strong> فضّل الأنشطة التي تخدم أكبر عدد من الطلاب</p>
-            <p><strong>• العدالة في التوزيع:</strong> احرص على إعطاء كل معلم فرصة عادلة لاستخدام الغرفة</p>
-            <p><strong>• التنسيق المسبق:</strong> راجع التعارضات قبل الموافقة على الطلبات</p>
-            <p><strong>• التواصل الفعال:</strong> أرسل الجدول النهائي لجميع المعلمين عبر الواتساب أو البريد الإلكتروني</p>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">📋</div>
-                <div class="stat-number" id="totalRequests">0</div>
-                <div class="stat-label">إجمالي الطلبات</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">⏳</div>
-                <div class="stat-number" id="pendingRequests">0</div>
-                <div class="stat-label">طلبات قيد المراجعة</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">✅</div>
-                <div class="stat-number" id="approvedRequests">0</div>
-                <div class="stat-label">طلبات مقبولة</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">📈</div>
-                <div class="stat-number" id="weeklyUsage">0%</div>
-                <div class="stat-label">نسبة الاستخدام الأسبوعي</div>
-            </div>
-        </div>
-        
-        <div class="main-content">
-            <div class="requests-section">
-                <div class="section-header">
-                    <div class="section-title">📝 طلبات الحجز</div>
-                    <button class="export-btn" onclick="exportToExcel()">
-                        📊 تصدير التقرير
-                    </button>
-                </div>
-                
-                <div class="filters">
-                    <select class="filter-select" id="statusFilter">
-                        <option value="">جميع الحالات</option>
-                        <option value="pending">قيد المراجعة</option>
-                        <option value="approved">مقبول</option>
-                        <option value="rejected">مرفوض</option>
-                    </select>
-                    
-                    <select class="filter-select" id="subjectFilter">
-                        <option value="">جميع المواد</option>
-                        <option value="رياضيات">رياضيات</option>
-                        <option value="علوم">علوم</option>
-                        <option value="لغة عربية">لغة عربية</option>
-                        <option value="لغة إنجليزية">لغة إنجليزية</option>
-                        <option value="اجتماعيات">اجتماعيات</option>
-                        <option value="تربية إسلامية">تربية إسلامية</option>
-                        <option value="تربية فنية">تربية فنية</option>
-                        <option value="تربية بدنية">تربية بدنية</option>
-                        <option value="حاسوب">حاسوب</option>
-                        <option value="مهارات حياتية">مهارات حياتية</option>
-                    </select>
-                    
-                    <input type="text" class="filter-select" id="teacherFilter" placeholder="البحث بالمعلم...">
-                </div>
-                
-                <div class="loading" id="loadingRequests">
-                    جاري تحميل الطلبات...
-                </div>
-                
-                <div id="requestsList"></div>
+        <div class="form-card">
+            <div class="form-header">
+                <h1>📝 طلب حجز الغرفة متعددة المهام</h1>
+                <p>يرجى تعبئة النموذج أدناه لتقديم طلب حجز الغرفة متعددة المهام<br>
+                سيتم مراجعة طلبكم من قبل إدارة المدرسة وإشعاركم بالقرار النهائي</p>
             </div>
             
-            <div class="schedule-section">
-                <div class="section-header">
-                    <div class="section-title">📅 الجدول الأسبوعي</div>
+            <div class="form-container">
+                <div class="educational-note">
+                    <h3>📋 تعليمات مهمة:</h3>
+                    <p>• يتم مراجعة الطلبات من قبل إدارة المدرسة وتوزيع الأوقات بعدالة</p>
+                    <p>• الأولوية للأنشطة التعليمية التي تخدم أكبر عدد من الطلاب</p>
+                    <p>• يرجى اختيار عدة بدائل زمنية لضمان الحصول على موعد مناسب</p>
+                    <p>• سيتم إرسال الجدول النهائي لجميع المعلمين بعد اكتمال المراجعة</p>
                 </div>
                 
-                <div class="week-schedule">
-                    <div class="schedule-header">الحصة</div>
-                    <div class="schedule-header">الأحد</div>
-                    <div class="schedule-header">الاثنين</div>
-                    <div class="schedule-header">الثلاثاء</div>
-                    <div class="schedule-header">الأربعاء</div>
-                    <div class="schedule-header">الخميس</div>
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label for="teacherName">اسم المعلم <span class="required-field">*</span></label>
+                        <input type="text" id="teacherName" name="teacherName" required 
+                               placeholder="أدخل اسمك الكامل">
+                    </div>
                     
-                    <div class="schedule-header">الأولى</div>
-                    <div class="schedule-cell" data-slot="sunday-1"></div>
-                    <div class="schedule-cell" data-slot="monday-1"></div>
-                    <div class="schedule-cell" data-slot="tuesday-1"></div>
-                    <div class="schedule-cell" data-slot="wednesday-1"></div>
-                    <div class="schedule-cell" data-slot="thursday-1"></div>
+                    <div class="form-group">
+                        <label for="subject">المادة <span class="required-field">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">اختر المادة</option>
+                            <option value="رياضيات">رياضيات</option>
+                            <option value="علوم">علوم</option>
+                            <option value="لغة عربية">لغة عربية</option>
+                            <option value="لغة إنجليزية">لغة إنجليزية</option>
+                            <option value="اجتماعيات">اجتماعيات</option>
+                            <option value="تربية إسلامية">تربية إسلامية</option>
+                            <option value="تربية فنية">تربية فنية</option>
+                            <option value="تربية بدنية">تربية بدنية</option>
+                            <option value="حاسوب">حاسوب</option>
+                            <option value="مهارات حياتية">مهارات حياتية</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
                     
-                    <div class="schedule-header">الثانية</div>
-                    <div class="schedule-cell" data-slot="sunday-2"></div>
-                    <div class="schedule-cell" data-slot="monday-2"></div>
-                    <div class="schedule-cell" data-slot="tuesday-2"></div>
-                    <div class="schedule-cell" data-slot="wednesday-2"></div>
-                    <div class="schedule-cell" data-slot="thursday-2"></div>
+                    <div class="form-group">
+                        <label for="activityType">نوع النشاط <span class="required-field">*</span></label>
+                        <select id="activityType" name="activityType" required>
+                            <option value="">اختر نوع النشاط</option>
+                            <option value="درس تفاعلي">درس تفاعلي مع الطلاب</option>
+                            <option value="عرض تقديمي">عرض تقديمي</option>
+                            <option value="ورشة عمل">ورشة عمل</option>
+                            <option value="نشاط جماعي">نشاط جماعي</option>
+                            <option value="تقييم إلكتروني">تقييم إلكتروني</option>
+                            <option value="بحث ومشروع">بحث ومشروع</option>
+                            <option value="اجتماع تربوي">اجتماع تربوي</option>
+                            <option value="تحضير">تحضير وإعداد</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
                     
-                    <div class="schedule-header">الثالثة</div>
-                    <div class="schedule-cell" data-slot="sunday-3"></div>
-                    <div class="schedule-cell" data-slot="monday-3"></div>
-                    <div class="schedule-cell" data-slot="tuesday-3"></div>
-                    <div class="schedule-cell" data-slot="wednesday-3"></div>
-                    <div class="schedule-cell" data-slot="thursday-3"></div>
+                    <div class="form-group">
+                        <label for="studentsCount">عدد المستفيدين (الطلاب/المعلمين)</label>
+                        <input type="number" id="studentsCount" name="studentsCount" min="1" max="50" 
+                               placeholder="أدخل العدد المتوقع">
+                    </div>
                     
-                    <div class="schedule-header">الرابعة</div>
-                    <div class="schedule-cell" data-slot="sunday-4"></div>
-                    <div class="schedule-cell" data-slot="monday-4"></div>
-                    <div class="schedule-cell" data-slot="tuesday-4"></div>
-                    <div class="schedule-cell" data-slot="wednesday-4"></div>
-                    <div class="schedule-cell" data-slot="thursday-4"></div>
+                    <div class="schedule-section">
+                        <div class="schedule-title">🗓️ اختر الأيام والحصص المطلوبة</div>
+                        <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                            يمكنك اختيار عدة بدائل لزيادة فرصة الحصول على موعد مناسب
+                        </p>
+                        
+                        <div class="days-grid">
+                            <div class="day-card" data-day="sunday">
+                                <div class="day-title">الأحد</div>
+                                <div class="periods-grid">
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-1">
+                                        الحصة الأولى
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-2">
+                                        الحصة الثانية
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-3">
+                                        الحصة الثالثة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-4">
+                                        الحصة الرابعة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-5">
+                                        الحصة الخامسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-6">
+                                        الحصة السادسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="sunday-7">
+                                        الحصة السابعة
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="day-card" data-day="monday">
+                                <div class="day-title">الاثنين</div>
+                                <div class="periods-grid">
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-1">
+                                        الحصة الأولى
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-2">
+                                        الحصة الثانية
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-3">
+                                        الحصة الثالثة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-4">
+                                        الحصة الرابعة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-5">
+                                        الحصة الخامسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-6">
+                                        الحصة السادسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="monday-7">
+                                        الحصة السابعة
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="day-card" data-day="tuesday">
+                                <div class="day-title">الثلاثاء</div>
+                                <div class="periods-grid">
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-1">
+                                        الحصة الأولى
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-2">
+                                        الحصة الثانية
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-3">
+                                        الحصة الثالثة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-4">
+                                        الحصة الرابعة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-5">
+                                        الحصة الخامسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-6">
+                                        الحصة السادسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="tuesday-7">
+                                        الحصة السابعة
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="day-card" data-day="wednesday">
+                                <div class="day-title">الأربعاء</div>
+                                <div class="periods-grid">
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-1">
+                                        الحصة الأولى
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-2">
+                                        الحصة الثانية
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-3">
+                                        الحصة الثالثة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-4">
+                                        الحصة الرابعة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-5">
+                                        الحصة الخامسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-6">
+                                        الحصة السادسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="wednesday-7">
+                                        الحصة السابعة
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="day-card" data-day="thursday">
+                                <div class="day-title">الخميس</div>
+                                <div class="periods-grid">
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-1">
+                                        الحصة الأولى
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-2">
+                                        الحصة الثانية
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-3">
+                                        الحصة الثالثة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-4">
+                                        الحصة الرابعة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-5">
+                                        الحصة الخامسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-6">
+                                        الحصة السادسة
+                                    </label>
+                                    <label class="period-checkbox">
+                                        <input type="checkbox" name="schedule" value="thursday-7">
+                                        الحصة السابعة
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="schedule-header">الخامسة</div>
-                    <div class="schedule-cell" data-slot="sunday-5"></div>
-                    <div class="schedule-cell" data-slot="monday-5"></div>
-                    <div class="schedule-cell" data-slot="tuesday-5"></div>
-                    <div class="schedule-cell" data-slot="wednesday-5"></div>
-                    <div class="schedule-cell" data-slot="thursday-5"></div>
+                    <div class="form-group">
+                        <label for="notes">ملاحظات إضافية</label>
+                        <textarea id="notes" name="notes" rows="3" 
+                                  placeholder="أي ملاحظات أو متطلبات خاصة للاستخدام (اختياري)"></textarea>
+                    </div>
                     
-                    <div class="schedule-header">السادسة</div>
-                    <div class="schedule-cell" data-slot="sunday-6"></div>
-                    <div class="schedule-cell" data-slot="monday-6"></div>
-                    <div class="schedule-cell" data-slot="tuesday-6"></div>
-                    <div class="schedule-cell" data-slot="wednesday-6"></div>
-                    <div class="schedule-cell" data-slot="thursday-6"></div>
-                    
-                    <div class="schedule-header">السابعة</div>
-                    <div class="schedule-cell" data-slot="sunday-7"></div>
-                    <div class="schedule-cell" data-slot="monday-7"></div>
-                    <div class="schedule-cell" data-slot="tuesday-7"></div>
-                    <div class="schedule-cell" data-slot="wednesday-7"></div>
-                    <div class="schedule-cell" data-slot="thursday-7"></div>
-                </div>
+                    <div class="submit-section">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            📨 إرسال طلب الحجز
+                        </button>
+                        
+                        <div class="loading" id="loading">
+                            جاري إرسال الطلب...
+                        </div>
+                        
+                        <div class="status-message" id="statusMessage"></div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     
     <!-- Footer -->
-    <footer style="background: white; padding: 20px; text-align: center; border-top: 1px solid #e3f2fd; margin-top: 40px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);">
+    <footer style="background: white; padding: 20px; text-align: center; border-top: 1px solid #e3f2fd; margin-top: 40px;">
         <div style="color: #666; font-size: 0.9em;">
             <p style="margin-bottom: 5px;">Designed & Developed by</p>
             <p style="color: #1e88e5; font-weight: 600; font-size: 1.1em;">Nawaf Alsubhi</p>
         </div>
     </footer>
-    
-    <!-- نافذة تفاصيل الطلب -->
-    <div id="requestModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>📋 تفاصيل طلب الحجز</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="modal-body" id="modalContent"></div>
-        </div>
-    </div>
 
     <script type="module">
         // إعدادات Firebase
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
         // تكوين Firebase - متوسطة المنذر بن عمرو الأنصاري
         const firebaseConfig = {
@@ -775,399 +639,160 @@
         const db = getFirestore(app);
 
         // متغيرات عامة
-        let allReservations = [];
-        let filteredReservations = [];
+        let existingReservations = [];
 
-        // تحميل البيانات عند تحميل الصفحة
-        window.addEventListener('DOMContentLoaded', loadData);
+        // تحميل الحجوزات الحالية عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', loadExistingReservations);
 
-        async function loadData() {
-            await loadReservations();
-            updateStats();
-            updateScheduleView();
-            displayRequests();
-        }
-
-        // تحميل الحجوزات من Firebase
-        async function loadReservations() {
+        async function loadExistingReservations() {
             try {
-                document.getElementById('loadingRequests').style.display = 'block';
-                
                 const reservationsRef = collection(db, 'reservations');
-                const q = query(reservationsRef, orderBy('submittedAt', 'desc'));
-                const snapshot = await getDocs(q);
-                
-                allReservations = snapshot.docs.map(doc => ({
+                const snapshot = await getDocs(reservationsRef);
+                existingReservations = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
-                
-                filteredReservations = [...allReservations];
-                
             } catch (error) {
                 console.error('خطأ في تحميل الحجوزات:', error);
-                document.getElementById('requestsList').innerHTML = 
-                    '<div class="no-data">خطأ في تحميل البيانات</div>';
-            } finally {
-                document.getElementById('loadingRequests').style.display = 'none';
             }
         }
 
-        // تحديث الإحصائيات
-        function updateStats() {
-            const totalRequests = allReservations.length;
-            const pendingRequests = allReservations.filter(r => r.status === 'pending').length;
-            const approvedRequests = allReservations.filter(r => r.status === 'approved').length;
-            
-            // حساب نسبة الاستخدام الأسبوعي
-            const totalSlots = 5 * 7; // 5 أيام × 7 حصص
-            const occupiedSlots = new Set();
-            allReservations.filter(r => r.status === 'approved').forEach(reservation => {
-                if (reservation.schedule) {
-                    reservation.schedule.forEach(slot => occupiedSlots.add(slot));
+        // معالج تغيير الحصص
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'schedule') {
+                // تحديث شكل اليوم عند اختيار حصة
+                const dayCard = e.target.closest('.day-card');
+                const dayCheckboxes = dayCard.querySelectorAll('input[type="checkbox"]');
+                const hasChecked = Array.from(dayCheckboxes).some(cb => cb.checked);
+                
+                if (hasChecked) {
+                    dayCard.classList.add('selected');
+                } else {
+                    dayCard.classList.remove('selected');
                 }
-            });
-            const weeklyUsage = Math.round((occupiedSlots.size / totalSlots) * 100);
-            
-            document.getElementById('totalRequests').textContent = totalRequests;
-            document.getElementById('pendingRequests').textContent = pendingRequests;
-            document.getElementById('approvedRequests').textContent = approvedRequests;
-            document.getElementById('weeklyUsage').textContent = weeklyUsage + '%';
-        }
 
-        // تحديث عرض الجدول الأسبوعي
-        function updateScheduleView() {
-            // إعادة تعيين جميع الخلايا
-            document.querySelectorAll('.schedule-cell').forEach(cell => {
-                cell.className = 'schedule-cell available';
-                cell.innerHTML = 'متاح';
-            });
-
-            // تحديد الخلايا المحجوزة
-            const approvedReservations = allReservations.filter(r => r.status === 'approved');
-            approvedReservations.forEach(reservation => {
-                if (reservation.schedule) {
-                    reservation.schedule.forEach(slot => {
-                        const cell = document.querySelector(`[data-slot="${slot}"]`);
-                        if (cell) {
-                            cell.className = 'schedule-cell occupied';
-                            cell.innerHTML = `محجوز<div class="occupied-by">${reservation.teacherName}</div>`;
-                        }
-                    });
+                // تحديث شكل الحصة المختارة
+                const periodCheckbox = e.target.closest('.period-checkbox');
+                if (e.target.checked) {
+                    periodCheckbox.classList.add('selected');
+                } else {
+                    periodCheckbox.classList.remove('selected');
                 }
-            });
-        }
 
-        // عرض قائمة الطلبات
-        function displayRequests() {
-            const container = document.getElementById('requestsList');
-            
-            if (filteredReservations.length === 0) {
-                container.innerHTML = '<div class="no-data">لا توجد طلبات تطابق معايير البحث</div>';
-                return;
+                validateForm();
             }
-
-            container.innerHTML = filteredReservations.map(request => createRequestCard(request)).join('');
-        }
-
-        // إنشاء بطاقة طلب
-        function createRequestCard(request) {
-            // التأكد من أنواع البيانات
-            const teacherName = String(request.teacherName || 'غير محدد');           // string
-            const subject = String(request.subject || 'غير محدد');                   // string  
-            const activityType = String(request.activityType || 'غير محدد');          // string
-            const studentsCount = Number(request.studentsCount) || 0;                // number
-            const notes = String(request.notes || '');                               // string
-            const status = String(request.status || 'pending');                      // string
-            const submittedAt = String(request.submittedAt || '');                   // string
-            const schedule = Array.isArray(request.schedule) ? request.schedule : []; // array
-
-            const statusText = {
-                'pending': 'قيد المراجعة',
-                'approved': 'مقبول',
-                'rejected': 'مرفوض'
-            };
-
-            const scheduleSlots = schedule.map(slot => {
-                const [day, period] = String(slot).split('-');
-                const dayNames = {
-                    'sunday': 'الأحد',
-                    'monday': 'الاثنين',
-                    'tuesday': 'الثلاثاء',
-                    'wednesday': 'الأربعاء',
-                    'thursday': 'الخميس'
-                };
-                const periodNames = {
-                    '1': 'الأولى', '2': 'الثانية', '3': 'الثالثة', '4': 'الرابعة',
-                    '5': 'الخامسة', '6': 'السادسة', '7': 'السابعة'
-                };
-                return `<span class="slot-tag">${dayNames[day] || day} - ${periodNames[period] || period}</span>`;
-            }).join('');
-
-            const actionButtons = status === 'pending' ? `
-                <div class="action-buttons">
-                    <button class="btn btn-approve" onclick="updateRequestStatus('${request.id}', 'approved')">
-                        ✅ قبول
-                    </button>
-                    <button class="btn btn-reject" onclick="updateRequestStatus('${request.id}', 'rejected')">
-                        ❌ رفض
-                    </button>
-                    <button class="btn btn-details" onclick="showRequestDetails('${request.id}')">
-                        📋 تفاصيل
-                    </button>
-                </div>
-            ` : `
-                <div class="action-buttons">
-                    <button class="btn btn-details" onclick="showRequestDetails('${request.id}')">
-                        📋 تفاصيل
-                    </button>
-                </div>
-            `;
-
-            // تنسيق التاريخ بشكل صحيح
-            const formattedDate = submittedAt ? new Date(submittedAt).toLocaleDateString('ar-SA') : 'غير محدد';
-
-            return `
-                <div class="request-card ${status}">
-                    <div class="request-header">
-                        <div class="teacher-info">👨‍🏫 ${teacherName}</div>
-                        <div class="status-badge status-${status}">
-                            ${statusText[status] || status}
-                        </div>
-                    </div>
-                    
-                    <div class="request-details">
-                        <div class="detail-item">
-                            <span class="detail-label">📚 المادة:</span>
-                            <span>${subject}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">🎯 النشاط:</span>
-                            <span>${activityType}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">👥 المستفيدين:</span>
-                            <span>${studentsCount > 0 ? studentsCount + ' طالب' : 'غير محدد'}</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">📅 التاريخ:</span>
-                            <span>${formattedDate}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="schedule-slots">
-                        <div class="detail-label">🕐 الحصص المطلوبة:</div>
-                        <div class="slot-grid">
-                            ${scheduleSlots || '<span style="color: #666;">لا توجد حصص محددة</span>'}
-                        </div>
-                    </div>
-                    
-                    ${notes ? `
-                        <div style="margin-top: 15px;">
-                            <div class="detail-label">📝 ملاحظات:</div>
-                            <div style="background: #f5f5f5; padding: 10px; border-radius: 6px; margin-top: 5px; border-right: 3px solid #1e88e5;">
-                                ${notes}
-                            </div>
-                        </div>
-                    ` : ''}
-                    
-                    ${actionButtons}
-                </div>
-            `;
-        }
-
-        // تحديث حالة الطلب
-        window.updateRequestStatus = async function(requestId, newStatus) {
-            try {
-                await updateDoc(doc(db, 'reservations', requestId), {
-                    status: newStatus,
-                    updatedAt: new Date().toISOString()
-                });
-                
-                // تحديث البيانات المحلية
-                const requestIndex = allReservations.findIndex(r => r.id === requestId);
-                if (requestIndex !== -1) {
-                    allReservations[requestIndex].status = newStatus;
-                }
-                
-                // إعادة تحميل العرض
-                applyFilters();
-                updateStats();
-                updateScheduleView();
-                
-                // إظهار رسالة تأكيد
-                const statusText = newStatus === 'approved' ? 'قبول' : 'رفض';
-                const teacherName = allReservations[requestIndex]?.teacherName || '';
-                alert(`✅ تم ${statusText} طلب المعلم ${teacherName} بنجاح!`);
-                
-            } catch (error) {
-                console.error('خطأ في تحديث الطلب:', error);
-                alert('❌ حدث خطأ في تحديث الطلب. يرجى المحاولة مرة أخرى.');
-            }
-        };
-
-        // إظهار تفاصيل الطلب
-        window.showRequestDetails = function(requestId) {
-            const request = allReservations.find(r => r.id === requestId);
-            if (!request) return;
-
-            const modal = document.getElementById('requestModal');
-            const modalContent = document.getElementById('modalContent');
-            
-            modalContent.innerHTML = createDetailedView(request);
-            modal.style.display = 'block';
-        };
-
-        // إنشاء عرض مفصل للطلب
-        function createDetailedView(request) {
-            const statusText = {
-                'pending': 'قيد المراجعة',
-                'approved': 'مقبول',
-                'rejected': 'مرفوض'
-            };
-
-            const scheduleSlots = request.schedule ? request.schedule.map(slot => {
-                const [day, period] = slot.split('-');
-                const dayNames = {
-                    'sunday': 'الأحد',
-                    'monday': 'الاثنين',
-                    'tuesday': 'الثلاثاء',
-                    'wednesday': 'الأربعاء',
-                    'thursday': 'الخميس'
-                };
-                const periodNames = {
-                    '1': 'الأولى', '2': 'الثانية', '3': 'الثالثة', '4': 'الرابعة',
-                    '5': 'الخامسة', '6': 'السادسة', '7': 'السابعة'
-                };
-                return `<span class="slot-tag">${dayNames[day]} - حصة ${periodNames[period]}</span>`;
-            }).join('') : '';
-
-            return `
-                <div style="line-height: 1.8;">
-                    <div style="background: #f8f9ff; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #e3f2fd;">
-                        <h3 style="color: #1e88e5; margin-bottom: 15px;">📋 معلومات المعلم والطلب</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                            <div><strong>👨‍🏫 اسم المعلم:</strong> ${request.teacherName}</div>
-                            <div><strong>📚 المادة:</strong> ${request.subject}</div>
-                            <div><strong>🎯 نوع النشاط:</strong> ${request.activityType}</div>
-                            <div><strong>👥 عدد المستفيدين:</strong> ${request.studentsCount || 'غير محدد'}</div>
-                            <div><strong>📅 تاريخ التقديم:</strong> ${new Date(request.submittedAt).toLocaleDateString('ar-SA')}</div>
-                            <div><strong>📊 حالة الطلب:</strong> <span class="status-badge status-${request.status}">${statusText[request.status]}</span></div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #f1f8e9; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #c8e6c9;">
-                        <h3 style="color: #2e7d32; margin-bottom: 15px;">🕐 الحصص المطلوبة</h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            ${scheduleSlots}
-                        </div>
-                    </div>
-                    
-                    ${request.notes ? `
-                        <div style="background: #fff3e0; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ffcc02;">
-                            <h3 style="color: #ef6c00; margin-bottom: 15px;">📝 ملاحظات المعلم</h3>
-                            <p style="color: #bf360c; line-height: 1.6;">${request.notes}</p>
-                        </div>
-                    ` : ''}
-                    
-                    ${request.status === 'pending' ? `
-                        <div style="text-align: center; margin-top: 25px;">
-                            <button class="btn btn-approve" onclick="updateRequestStatus('${request.id}', 'approved'); closeModal();" style="margin: 0 10px; padding: 12px 25px;">
-                                ✅ قبول الطلب
-                            </button>
-                            <button class="btn btn-reject" onclick="updateRequestStatus('${request.id}', 'rejected'); closeModal();" style="margin: 0 10px; padding: 12px 25px;">
-                                ❌ رفض الطلب
-                            </button>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        }
-
-        // إغلاق النافذة المنبثقة
-        window.closeModal = function() {
-            document.getElementById('requestModal').style.display = 'none';
-        };
-
-        // تطبيق الفلاتر
-        function applyFilters() {
-            const statusFilter = document.getElementById('statusFilter').value;
-            const subjectFilter = document.getElementById('subjectFilter').value;
-            const teacherFilter = document.getElementById('teacherFilter').value.toLowerCase();
-
-            filteredReservations = allReservations.filter(request => {
-                const matchesStatus = !statusFilter || request.status === statusFilter;
-                const matchesSubject = !subjectFilter || request.subject === subjectFilter;
-                const matchesTeacher = !teacherFilter || 
-                    request.teacherName.toLowerCase().includes(teacherFilter);
-                
-                return matchesStatus && matchesSubject && matchesTeacher;
-            });
-
-            displayRequests();
-        }
-
-        // ربط أحداث الفلاتر
-        ['statusFilter', 'subjectFilter', 'teacherFilter'].forEach(filterId => {
-            document.getElementById(filterId).addEventListener('change', applyFilters);
-            document.getElementById(filterId).addEventListener('input', applyFilters);
         });
 
-        // تصدير البيانات إلى Excel
-        window.exportToExcel = function() {
-            const csvContent = generateCSV();
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `تقرير_حجوزات_الغرفة_${new Date().toISOString().split('T')[0]}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
+        // معالج إرسال النموذج
+        document.getElementById('reservationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // تعطيل الزر وإظهار التحميل
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            statusMessage.style.display = 'none';
 
-        function generateCSV() {
-            const headers = ['اسم المعلم', 'المادة', 'نوع النشاط', 'عدد المستفيدين', 'الحالة', 'تاريخ التقديم', 'الحصص المطلوبة', 'الملاحظات'];
-            const rows = allReservations.map(request => {
-                const scheduleText = request.schedule ? request.schedule.map(slot => {
-                    const [day, period] = slot.split('-');
-                    const dayNames = {
-                        'sunday': 'الأحد', 'monday': 'الاثنين', 'tuesday': 'الثلاثاء',
-                        'wednesday': 'الأربعاء', 'thursday': 'الخميس'
-                    };
-                    const periodNames = {
-                        '1': 'الأولى', '2': 'الثانية', '3': 'الثالثة', '4': 'الرابعة',
-                        '5': 'الخامسة', '6': 'السادسة', '7': 'السابعة'
-                    };
-                    return `${dayNames[day]} - ${periodNames[period]}`;
-                }).join(' | ') : '';
+            try {
+                // جمع البيانات
+                const formData = new FormData(e.target);
+                const selectedSchedules = Array.from(document.querySelectorAll('input[name="schedule"]:checked'))
+                    .map(cb => cb.value);
 
-                return [
-                    request.teacherName,
-                    request.subject,
-                    request.activityType,
-                    request.studentsCount || '',
-                    request.status === 'pending' ? 'قيد المراجعة' : 
-                    request.status === 'approved' ? 'مقبول' : 'مرفوض',
-                    new Date(request.submittedAt).toLocaleDateString('ar-SA'),
-                    scheduleText,
-                    request.notes || ''
-                ];
-            });
+                if (selectedSchedules.length === 0) {
+                    throw new Error('يجب اختيار حصة واحدة على الأقل');
+                }
 
-            return [headers, ...rows].map(row => 
-                row.map(field => `"${field}"`).join(',')
-            ).join('\n');
+                const reservationData = {
+                    teacherName: formData.get('teacherName').toString().trim(),           // string
+                    subject: formData.get('subject').toString(),                         // string
+                    activityType: formData.get('activityType').toString(),               // string
+                    studentsCount: parseInt(formData.get('studentsCount')) || 0,         // number
+                    schedule: selectedSchedules,                                         // array of strings
+                    notes: formData.get('notes') ? formData.get('notes').toString().trim() : '', // string
+                    submittedAt: new Date().toISOString(),                              // string (ISO timestamp)
+                    status: 'pending',                                                  // string
+                    schoolInfo: {                                                       // object
+                        school: 'متوسطة المنذر بن عمرو الأنصاري',                      // string
+                        principal: 'خالد المطيري',                                     // string
+                        ministry: 'وزارة التعليم - المملكة العربية السعودية'           // string
+                    }
+                };
+
+                // إرسال البيانات إلى Firebase
+                await addDoc(collection(db, 'reservations'), reservationData);
+
+                // إظهار رسالة نجاح
+                statusMessage.className = 'status-message status-success';
+                statusMessage.innerHTML = `
+                    <strong>✅ تم إرسال طلب الحجز بنجاح!</strong><br>
+                    سيتم مراجعة طلبكم من قبل إدارة المدرسة وإشعاركم بالقرار النهائي.<br>
+                    شكراً لكم على استخدام النظام.
+                `;
+                statusMessage.style.display = 'block';
+
+                // إعادة تعيين النموذج
+                e.target.reset();
+                document.querySelectorAll('.day-card').forEach(card => 
+                    card.classList.remove('selected')
+                );
+                document.querySelectorAll('.period-checkbox').forEach(checkbox => 
+                    checkbox.classList.remove('selected')
+                );
+
+                // إعادة تحميل الحجوزات
+                await loadExistingReservations();
+
+            } catch (error) {
+                console.error('خطأ في الإرسال:', error);
+                statusMessage.className = 'status-message status-error';
+                statusMessage.innerHTML = `
+                    <strong>❌ حدث خطأ في إرسال الطلب</strong><br>
+                    ${error.message}<br>
+                    يرجى المحاولة مرة أخرى أو التواصل مع الدعم الفني.
+                `;
+                statusMessage.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        // التحقق من صحة البيانات
+        function validateForm() {
+            const requiredFields = ['teacherName', 'subject', 'activityType'];
+            const scheduleSelected = document.querySelectorAll('input[name="schedule"]:checked').length > 0;
+            
+            const allValid = requiredFields.every(field => {
+                const element = document.getElementById(field);
+                return element && element.value.trim() !== '';
+            }) && scheduleSelected;
+
+            document.getElementById('submitBtn').disabled = !allValid;
         }
 
-        // إغلاق النافذة المنبثقة عند النقر خارجها
-        window.onclick = function(event) {
-            const modal = document.getElementById('requestModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
+        // مراقبة تغيير الحقول المطلوبة
+        ['teacherName', 'subject', 'activityType'].forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('input', validateForm);
+            document.getElementById(fieldId).addEventListener('change', validateForm);
+        });
+
+        // التحقق الأولي من صحة النموذج
+        validateForm();
+
+        // إضافة تأثيرات بصرية عند التفاعل
+        document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
     </script>
 </body>
 </html>
