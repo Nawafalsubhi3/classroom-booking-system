@@ -610,6 +610,14 @@
             </div>
         </div>
     </div>
+    
+    <!-- Footer -->
+    <footer style="background: white; padding: 20px; text-align: center; border-top: 1px solid #e3f2fd; margin-top: 40px;">
+        <div style="color: #666; font-size: 0.9em;">
+            <p style="margin-bottom: 5px;">Designed & Developed by</p>
+            <p style="color: #1e88e5; font-weight: 600; font-size: 1.1em;">Nawaf Alsubhi</p>
+        </div>
+    </footer>
 
     <script type="module">
         // إعدادات Firebase
@@ -699,18 +707,18 @@
                 }
 
                 const reservationData = {
-                    teacherName: formData.get('teacherName'),
-                    subject: formData.get('subject'),
-                    activityType: formData.get('activityType'),
-                    studentsCount: parseInt(formData.get('studentsCount')) || 0,
-                    schedule: selectedSchedules,
-                    notes: formData.get('notes') || '',
-                    submittedAt: new Date().toISOString(),
-                    status: 'pending',
-                    schoolInfo: {
-                        school: 'متوسطة المنذر بن عمرو الأنصاري',
-                        principal: 'خالد المطيري',
-                        ministry: 'وزارة التعليم - المملكة العربية السعودية'
+                    teacherName: formData.get('teacherName').toString().trim(),           // string
+                    subject: formData.get('subject').toString(),                         // string
+                    activityType: formData.get('activityType').toString(),               // string
+                    studentsCount: parseInt(formData.get('studentsCount')) || 0,         // number
+                    schedule: selectedSchedules,                                         // array of strings
+                    notes: formData.get('notes') ? formData.get('notes').toString().trim() : '', // string
+                    submittedAt: new Date().toISOString(),                              // string (ISO timestamp)
+                    status: 'pending',                                                  // string
+                    schoolInfo: {                                                       // object
+                        school: 'متوسطة المنذر بن عمرو الأنصاري',                      // string
+                        principal: 'خالد المطيري',                                     // string
+                        ministry: 'وزارة التعليم - المملكة العربية السعودية'           // string
                     }
                 };
 
