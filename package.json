@@ -1,0 +1,58 @@
+{
+  "name": "classroom-booking-system",
+  "version": "1.0.0",
+  "description": "نظام إدارة حجوزات الغرفة متعددة المهام - نظام متكامل لإدارة حجوزات الغرف في المدارس",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "start-node": "npx http-server -p 8000",
+    "deploy": "gh-pages -d .",
+    "test": "echo \"لا توجد اختبارات محددة\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/classroom-booking-system.git"
+  },
+  "keywords": [
+    "مدرسة",
+    "حجوزات",
+    "إدارة",
+    "تعليم",
+    "firebase",
+    "javascript",
+    "html",
+    "css",
+    "school-management",
+    "booking-system",
+    "education",
+    "classroom",
+    "scheduling"
+  ],
+  "author": {
+    "name": "اسم المطور",
+    "email": "developer@example.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/username/classroom-booking-system/issues"
+  },
+  "homepage": "https://username.github.io/classroom-booking-system",
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "index.html",
+    "admin.html",
+    "README.md"
+  ]
+}
